@@ -28,6 +28,7 @@
                 
                 <dt>Allergens</dt>
                 <dd><li>Contains gluten</li></dd>
+                <dd><li>Lactose free! </li></dd>
             </ul>
             </div>
             <div style="display: inline-block">
@@ -35,7 +36,7 @@
                 <h4>
                     The Cheese Burger 
                 </h4>
-                <img src= "https://www.burger-king.sk/assets/frontend/images/productImages/product_img2_db73ab6f0025e75e207d97f41c3b1f02.png" alt="Picture of Cheese Burger" title="Yummy Burger's Cheese Burger" style="width: 200px" >
+                <img src= "https://www.burger-king.sk/assets/frontend/images/productImages/product_img2_db73ab6f0025e75e207d97f41c3b1f02.png" alt="Picture of Cheese Burger" title="Yummy Burger's Cheese Burger" style="width: 200px">
 
             <ul>
                 <dt> Our Famous Cheese Burger </dt>
@@ -70,7 +71,7 @@
 
             </section>
 
-            <section id="contact">
+            <section id="ordering info">
             <h3> Customer information</h3>
                 <p> To process your order, we need some information</p>
 
@@ -93,9 +94,32 @@
                             <label for="house">House </label><br>
                             <input type="number" id="house" name="house" required="required" placeholder="House number">
 
-
-
                     </form>
+
+                    <p>
+                        <label for="payment"> Payment </label><br>
+                        <select id="payment" name="pay">
+                            <option selected = "selected">Swish</option>
+                            <option>Debit card</option>
+                            <option>Credit card</option>
+                            <option>Klarna</option>
+                        </select>
+                     </p>
+
+                     <p>
+                        <label for="radio"> Gender </label><br>
+                            <input checked="checked" type="radio" name="gender" value="male"> Male <br>
+                            <input type="radio" name="gender" value="female"> Female <br>
+                            <input type="radio" name="gender" value="non-binary"> Non-binary <br>
+                            <input type="radio" name="gender" value="not disclose"> Undisclosed <br>
+
+                     </p>
+
+                     <button type="submit">
+                        <img src="https://pngimg.com/uploads/smiley/smiley_PNG36226.png" style="width: 25px">
+                        Place order!
+                      </button>
+
 
             </section>
 
