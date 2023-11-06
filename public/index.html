@@ -9,10 +9,11 @@
             <h1>Welcome to Yummy Burgers Online! </h1>
         </header>
         <main>
-            <section>
-            <h2> Select your burger </h2>
-                <p> Choose between our Yummy Burgers </p>
-            <div style="display: inline-block">
+            <section id="burgerselection">
+                <h2> Select your burger </h2>
+                    <p> Choose between our Yummy Burgers </p>
+            
+                <div style="display: inline-block">
                 
                 <h4>
                     The Green Burger 
@@ -67,14 +68,35 @@
             </ul>
             </div>
 
-            
-
-
             </section>
 
-            <section>
+            <section id="contact">
             <h3> Customer information</h3>
                 <p> To process your order, we need some information</p>
+
+                <h3> Delivery information </h3>
+
+                    <form>
+
+                        <p>
+                            <label for="fullname" > Full name </label><br>
+                            <input type="text" id="fullname" name="fn" required="required" placeholder="First- and Last name">
+                        </p>
+                        <p>
+                            <label for="email">E-mail </label><br>
+                            <input type="email" id="email" name="em" placeholder="E-mail address">
+                        </p>
+                        <p>
+                            <label for="street">Street </label><br>
+                            <input type="text" id="street" name="str" required="required" placeholder="Street name">
+                        </p>
+                            <label for="house">House </label><br>
+                            <input type="number" id="house" name="house" required="required" placeholder="House number">
+
+
+
+                    </form>
+
             </section>
 
         </main>
