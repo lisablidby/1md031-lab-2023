@@ -7,9 +7,19 @@ body {
  }
 
  /* trying to add the text on top of the picture, this is chat GPT */
- .webtopimage {
+ .webtop img {
     width: 100%;
-    height: 100px;
+    height: 120px;
+    border: 3px inset;
+ }
+
+ .webtop h1{
+    position: absolute;
+    top: 30px;
+    left: 60px;
+    text-align: center;
+    margin: 20px ;
+    z-index: 1;
  }
 
 
@@ -19,12 +29,6 @@ header {
     font-family: 'Trispace', sans-serif;
     color:#5e63b6;
 
-    position: absolute;
-    top: 0;
-    left: 0;
-    text-align: center;
-    z-index: 1;
-    margin: 10px ;
 }
 
 /* class allergens*/
