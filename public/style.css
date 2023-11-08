@@ -4,6 +4,7 @@
 /* font whole text*/
 body {
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
  }
 
  /* trying to add the text on top of the picture, this is chat GPT */
@@ -20,6 +21,7 @@ body {
     text-align: center;
     margin: 20px ;
     z-index: 1;
+    font-size: 2em;
  }
 
 
