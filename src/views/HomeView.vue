@@ -18,6 +18,20 @@ import io from 'socket.io-client'
 
 const socket = io();
 
+let burgerArray = [{productName: "The Green Burger", url: "https://cdn-bk-se-ordering.azureedge.net/media/fvidd1jj/halloumi-cheesy-cheese.png", glutlac: "Contains gluten and lactose"}
+                  ,{productName: "The Cheese Burger", url:"https://cdn-bk-se-ordering.azureedge.net/media/ywfd4uqs/cheesy-cheese.png", glutlac: "Contains gluten and lactose"} , 
+                  {productName: "The Chicken Burger", url: "https://cdn-bk-se-ordering.azureedge.net/media/tzdfpoe0/bk_kiosk_400x290_singel_crispychicken.png", glutlac: "Containt gluten, lactosefree!"}]
+
+console.log( burgerArray)
+
+
+function MenuItem(pn, url, glutlac) {
+    this.productName = pn; // The *this* keyword refers to the object itself
+    this.picture = url;
+    this.allegens = glutlac;
+}
+
+
 export default {
   name: 'HomeView',
   components: {
@@ -47,6 +61,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style>
@@ -54,5 +69,6 @@ export default {
     width: 300px;
     height: 300px;
     background-color: red;
+
   }
 </style>
