@@ -18,7 +18,7 @@ import io from 'socket.io-client'
 
 const socket = io();
 
-let burgerArray = [{productName: "The Green Burger", url: "https://cdn-bk-se-ordering.azureedge.net/media/fvidd1jj/halloumi-cheesy-cheese.png", glutlac: "Contains gluten and lactose"}
+var burgerArray = [{productName: "The Green Burger", url: "https://cdn-bk-se-ordering.azureedge.net/media/fvidd1jj/halloumi-cheesy-cheese.png", glutlac: "Contains gluten and lactose"}
                   ,{productName: "The Cheese Burger", url:"https://cdn-bk-se-ordering.azureedge.net/media/ywfd4uqs/cheesy-cheese.png", glutlac: "Contains gluten and lactose"} , 
                   {productName: "The Chicken Burger", url: "https://cdn-bk-se-ordering.azureedge.net/media/tzdfpoe0/bk_kiosk_400x290_singel_crispychicken.png", glutlac: "Containt gluten, lactosefree!"}]
 
@@ -31,6 +31,7 @@ function MenuItem(pn, url, glutlac) {
     this.allegens = glutlac;
 }
 
+// det ovan har jag skrivit själv 
 
 export default {
   name: 'HomeView',
