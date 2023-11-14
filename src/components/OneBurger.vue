@@ -1,53 +1,67 @@
 
-
 <template>
 
-    <div>
-      {{ burger.name }} {{ burger.kCal }}
-    </div>
+   
 
+    <div class = "burgerMenu">
 
-  <div class = "box Green">
-                
-    <h4>
-        The Green Burger 
-    </h4>
-        <img src= "https://cdn-bk-se-ordering.azureedge.net/media/fvidd1jj/halloumi-cheesy-cheese.png" alt="Halloumiburger with avocado" title="Yummy Burger's Green Burger" style="width: 210px">
-            
+    <ul>
+    <!--<li v-for="burger in burgerList" :key="burger.id"></li>-->
+      <h2>{{ burger.productName }} </h2>
+  
+        <img v-bind:src="burger.picture" :alt="burger.productName">
           <ul>
-              <dt> Our Vegetarian Burger </dt>
-              <dd><li>Halloumi </li></dd>
-               <dd><li>Avocado</li></dd>
-               <dd><li>Cheese sauce</li></dd>
+              <dt> {{ burger.descriptionTitle }}</dt>
+              <dd><li>{{ burger.description }} </li></dd>
                 
-
               <section class="allergens">
                     
                 <dt>Allergens</dt>
-                <dd><li>Contains <span id="glutlac">gluten</span></li></dd>
-                <dd><li>Contains <span id="glutlac">lactose</span> </li></dd>
+                <dd><li v-if="burger.gluten"> 
+                  <span id="glutlac"> Gluten</span></li></dd>
+
+                  <dd><li v-if="burger.lactose"> 
+                  <span id="glutlac"> Lactose</span></li></dd>
                 
               </section>
           </ul>
+      </ul>
     </div>
   </template>
   
   <script>
-  export default {
+
+export default {
     name: 'OneBurger',
     props: {
       burger: Object
     }
   }
+
+
   </script>
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->
   <style scoped>
 
-#glutlac {
+  #glutlac {
     font-weight: bold;
-    
- }
+  }
+
+  .allergens {
+    color: #770659;
+    }
+
+  img {
+  width:200px;
+  }
+
+
+  /* Each title is the same size as the text but bold */
+  h2{
+  font-size: 1em
+
+  }
 
   
   </style>

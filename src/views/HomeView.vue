@@ -11,74 +11,14 @@
                 <h2> Select your burger </h2>
                     <p> Choose between our Yummy Burgers in the menu below </p>
             
-                <div class = "wrapper">
-                <div class = "box Green">
-                
-                <h4>
-                    The Green Burger 
-                </h4>
-                <img src= "https://cdn-bk-se-ordering.azureedge.net/media/fvidd1jj/halloumi-cheesy-cheese.png" alt="Halloumiburger with avocado" title="Yummy Burger's Green Burger" style="width: 210px" >
-            
-            <ul>
-                <dt> Our Vegetarian Burger </dt>
-                <dd><li>Halloumi </li></dd>
-                <dd><li>Avocado</li></dd>
-                <dd><li>Cheese sauce</li></dd>
-                
+            <div class = "wrapper">
 
-                <section class="allergens">
-                    
-                    <dt>Allergens</dt>
-                    <dd><li>Contains <span id="glutlac">gluten</span></li></dd>
-                    <dd><li>Contains <span id="glutlac">lactose</span> </li></dd>
-                    
-                </section>
-            </ul>
-            </div>
-            <div class = "box cheese">
-                
-                <h4>
-                    The Cheese Burger 
-                </h4>
-                <img src= "https://cdn-bk-se-ordering.azureedge.net/media/ywfd4uqs/cheesy-cheese.png" alt="Picture of Cheese Burger" title="Yummy Burger's Cheese Burger" style="width: 200px">
+<!---loopar över burgarna i min burgararray-->   
 
-            <ul>
-                <dt> Our Famous Cheese Burger </dt>
-                <dd><li>Spicy or mild cheese </li></dd>
-                <dd><li>Lettuce and tomatoes</li></dd>
-                <dd><li>BBQ sauce</li></dd>
-                
-                <section class="allergens">
-                    
-                    <dt>Allergens</dt>
-                    <dd><li>Contains <span id="glutlac">gluten</span></li></dd>
-                    <dd><li>Contains <span id="glutlac">lactose</span></li></dd>
-                    
-                </section>
-            </ul>
-            </div>
+             <Burger v-for="burger in burgers"
+                v-bind:burger="burger" 
+                v-bind:key="burger.name"/>
 
-            <div class = "box chicken">
-                
-                <h4>
-                    The Chicken Burger 
-                </h4>
-                <img src= "https://cdn-bk-se-ordering.azureedge.net/media/tzdfpoe0/bk_kiosk_400x290_singel_crispychicken.png" alt="Picture of Chicken Burger" title="Yummy Burger's Chicken Burger" style="width: 250px" >
-
-            <ul>
-                <dt> Our Fresh Chicken Burger </dt>
-                <dd><li>Fried chicken </li></dd>
-                <dd><li>Lettuce and tomatoes</li></dd>
-                <dd><li> Mild sauce</li></dd>
-                
-                <section class="allergens">
-                    
-                    <dt>Allergens</dt>
-                    <dd><li>Contains <span id="glutlac">gluten</span></li></dd>
-                    <dd><li><span id="glutlac">Lactose free! </span></li></dd>
-                </section>
-            </ul>
-            </div>
             </div>
 
             </section>
@@ -140,12 +80,7 @@
         </footer>
 
   <div>
-    <div>
-      <h1>Burgers</h1>
-      <Burger v-for="burger in burgers"
-              v-bind:burger="burger" 
-              v-bind:key="burger.name"/>
-    </div>
+
     <div id="map" v-on:click="addOrder">
       click here
     </div>
@@ -155,23 +90,32 @@
 <script>
 import Burger from '../components/OneBurger.vue'
 import io from 'socket.io-client'
+import menu from '../assets/menu.json'
 
 const socket = io();
 
-var burgerArray = [{productName: "The Green Burger", url: "https://cdn-bk-se-ordering.azureedge.net/media/fvidd1jj/halloumi-cheesy-cheese.png", glutlac: "Contains gluten and lactose"}
-                  ,{productName: "The Cheese Burger", url:"https://cdn-bk-se-ordering.azureedge.net/media/ywfd4uqs/cheesy-cheese.png", glutlac: "Contains gluten and lactose"} , 
-                  {productName: "The Chicken Burger", url: "https://cdn-bk-se-ordering.azureedge.net/media/tzdfpoe0/bk_kiosk_400x290_singel_crispychicken.png", glutlac: "Containt gluten, lactosefree!"}]
-
-console.log( burgerArray)
-
-
-function MenuItem(pn, url, glutlac) {
-    this.productName = pn; // The *this* keyword refers to the object itself
-    this.picture = url;
-    this.allegens = glutlac;
-}
+//console.log( burgerArray)
 
 // det ovan har jag skrivit själv och det skrivs ut om man kollar console när man inspekterar ! :)
+
+function MenuItem(pn, url, descTitle, desc, glut, lac) {
+    this.productName = pn; // The *this* keyword refers to the object itself
+    this.picture = url;
+    this.descriptionTitle = descTitle
+    this.description = desc
+    this.gluten = glut;
+    this.lactose = lac;
+    
+}
+
+// skriver new menuItem istället
+
+const burgerArray = [
+new MenuItem('The Green Burger', "https://cdn-bk-se-ordering.azureedge.net/media/fvidd1jj/halloumi-cheesy-cheese.png","Our Vegetarian Burger" ,"Halloumi, Avocado, Lettuce, Cheese Sauce", true, true), 
+new MenuItem(' The Cheese Burger',"https://cdn-bk-se-ordering.azureedge.net/media/ywfd4uqs/cheesy-cheese.png", "Our Famous Cheese Burger","Cheese, Lettuce, Tomatoes, BBQ Sauce",true, true) , 
+new MenuItem('The Chicken Burger',"https://cdn-bk-se-ordering.azureedge.net/media/tzdfpoe0/bk_kiosk_400x290_singel_crispychicken.png","Our Crispy Chicken Burger" ,"Fried Chicken, Lettuce, Tomatoes, Mild Sauce", true, false )
+]
+
 
 export default {
   name: 'HomeView',
@@ -180,10 +124,7 @@ export default {
   },
   data: function () {
     return {
-      burgers: [ {name: "small burger", kCal: 250},
-                 {name: "standard burger", kCal: 450},
-                 {name: "large burger", kCal: 850}
-               ]
+      burgers: menu
     }
   },
   methods: {
@@ -279,7 +220,7 @@ header {
  }
 
 /*Divisions around the burgers */
- div {
+div {
     padding: 10px 
  }
 
