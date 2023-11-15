@@ -92,11 +92,14 @@ import Burger from '../components/OneBurger.vue'
 import io from 'socket.io-client'
 import menu from '../assets/menu.json'
 
+const minusButton = document.getElementById("minusButton")
+const plusButton = document.getElementById("plusButton")
+const orderAmount = document .getElementById("orderAmount")
+
+
 const socket = io();
 
 //console.log( burgerArray)
-
-// det ovan har jag skrivit själv och det skrivs ut om man kollar console när man inspekterar ! :)
 
 function MenuItem(pn, url, descTitle, desc, glut, lac) {
     this.productName = pn; // The *this* keyword refers to the object itself
@@ -108,13 +111,12 @@ function MenuItem(pn, url, descTitle, desc, glut, lac) {
     
 }
 
-// skriver new menuItem istället
-
 const burgerArray = [
 new MenuItem('The Green Burger', "https://cdn-bk-se-ordering.azureedge.net/media/fvidd1jj/halloumi-cheesy-cheese.png","Our Vegetarian Burger" ,"Halloumi, Avocado, Lettuce, Cheese Sauce", true, true), 
 new MenuItem(' The Cheese Burger',"https://cdn-bk-se-ordering.azureedge.net/media/ywfd4uqs/cheesy-cheese.png", "Our Famous Cheese Burger","Cheese, Lettuce, Tomatoes, BBQ Sauce",true, true) , 
 new MenuItem('The Chicken Burger',"https://cdn-bk-se-ordering.azureedge.net/media/tzdfpoe0/bk_kiosk_400x290_singel_crispychicken.png","Our Crispy Chicken Burger" ,"Fried Chicken, Lettuce, Tomatoes, Mild Sauce", true, false )
 ]
+
 
 export default {
   name: 'HomeView',
@@ -140,7 +142,7 @@ export default {
                                 orderItems: ["Beans", "Curry"]
                               }
                  );
-    }
+    },
 
 
 
@@ -249,7 +251,5 @@ div {
     margin-right: 10px;
 
  }
-
-
 
 </style>
