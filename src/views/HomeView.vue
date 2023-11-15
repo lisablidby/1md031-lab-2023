@@ -131,23 +131,18 @@ export default {
   components: {
     Burger
   },
-  data: function () {
+
+data: function () {
     return {
-      burgers: menu
+      burgers: menu,
+      genderPicked: "female",
+      paymentPicked:"Swish",
+      nameText: null,
+      emailText: null,
+      streetText: null,
+      houseNumber: null,
     }
   },
-
- data: function(){
-  return {
-    genderPicked: "female",
-    paymentPicked:"Swish",
-    nameText: null,
-    emailText: null,
-    streetText: null,
-    houseNumber: null,
-
-  };
- },
 
 
   methods: {
