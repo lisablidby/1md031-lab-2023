@@ -33,26 +33,27 @@
 
                         <p>
                             <label for="fullname" > Full name </label><br>
-                            <input type="text" id="fullname" name="fn" required="required" placeholder="First- and Last name">
+                            <input type="text" id="fullname" v-model="nameText" required="required" placeholder="First- and Last name">
                         </p>
                         <p>
                             <label for="email">E-mail </label><br>
-                            <input type="email" id="email" name="em" placeholder="E-mail address">
+                            <input type="email" id="email" v-model="emailText" placeholder="E-mail address">
                         </p>
                         <p>
                             <label for="street">Street </label><br>
-                            <input type="text" id="street" name="str" required="required" placeholder="Street name">
+                            <input type="text" id="street" v-model="streetText" required="required" placeholder="Street name">
+
                         </p>
                             <label for="house">House </label><br>
-                            <input type="number" id="house" name="house" required="required" placeholder="House number">
+                            <input type="number" id="house" v-model="houseNumber" required="required" placeholder="House number">
 
                     </form>
 
                     <p>
                         <label for="payment"> Payment </label><br>
-                        <select id="payment" name="pay">
+                        <select id="payment" v-model="paymentPicked">
                             <option>Debit card</option>
-                            <option selected = "selected">Swish</option>
+                            <option >Swish</option>
                             <option>Credit card</option>
                             <option>Klarna</option>
                         </select>
@@ -60,10 +61,11 @@
 
                      <p>
                         <label for="radio"> Gender </label><br>
-                            <input checked="checked" type="radio" name="gender" value="male"> Male <br>
-                            <input type="radio" name="gender" value="female"> Female <br>
-                            <input type="radio" name="gender" value="non-binary"> Non-binary <br>
-                            <input type="radio" name="gender" value="not disclose"> Undisclosed <br>
+                            <input type="radio" value="male" v-model="genderPicked" > Male <br>
+                            <input type="radio" value="female" v-model="genderPicked" > Female <br>
+                            <input type="radio"  value="non-binary" v-model="genderPicked"> Non-binary <br>
+                            <input type="radio" value="undisclosed" v-model="genderPicked"> Undisclosed <br>
+                            
 
                      </p>
 
@@ -88,13 +90,19 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 import Burger from '../components/OneBurger.vue'
 import io from 'socket.io-client'
 import menu from '../assets/menu.json'
 
-const minusButton = document.getElementById("minusButton")
-const plusButton = document.getElementById("plusButton")
-const orderAmount = document .getElementById("orderAmount")
+const genderPicked = ref('Female')
+const paymentPicked = ref('Swish')
+const nameText = ref('Full Name')
+const emailText = ref('Email')
+const streetText = ref('Street')
+const houseNumber = ref('House Number')
+
+
 
 
 const socket = io();
@@ -128,6 +136,20 @@ export default {
       burgers: menu
     }
   },
+
+ data: function(){
+  return {
+    genderPicked: "female",
+    paymentPicked:"Swish",
+    nameText: null,
+    emailText: null,
+    streetText: null,
+    houseNumber: null,
+
+  };
+ },
+
+
   methods: {
     getOrderNumber: function () {
       return Math.floor(Math.random()*100000);
@@ -144,10 +166,10 @@ export default {
                  );
     },
 
+},
 
-
-  }
 }
+
 
 </script>
 
