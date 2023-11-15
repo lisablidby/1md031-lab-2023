@@ -17,7 +17,8 @@
 
              <Burger v-for="burger in burgers"
                 v-bind:burger="burger" 
-                v-bind:key="burger.name"/>
+                v-bind:key="burger.name"
+                v-on:orderedBurger="addToOrder($event)"/>
 
             </div>
 
@@ -69,7 +70,7 @@
 
                      </p>
 
-                     <button type="submit">
+                     <button type="submit" v-on:click="submitOrder">
                         <img src="https://pngimg.com/uploads/smiley/smiley_PNG36226.png" style="width: 25px">
                         Place order!
                       </button>
@@ -101,10 +102,6 @@ const nameText = ref('Full Name')
 const emailText = ref('Email')
 const streetText = ref('Street')
 const houseNumber = ref('House Number')
-
-
-
-
 const socket = io();
 
 //console.log( burgerArray)
@@ -135,12 +132,13 @@ export default {
 data: function () {
     return {
       burgers: menu,
-      genderPicked: "female",
-      paymentPicked:"Swish",
       nameText: null,
       emailText: null,
       streetText: null,
       houseNumber: null,
+      paymentPicked:"Swish",
+      genderPicked: "female",
+      orderedBurgers: {}
     }
   },
 
@@ -148,6 +146,17 @@ data: function () {
   methods: {
     getOrderNumber: function () {
       return Math.floor(Math.random()*100000);
+    },
+
+    submitOrder:function (event){
+     console.log(this.genderPicked, this.paymentPicked, this.nameText, this.emailText, this.streetText, this.houseNumber, this.orderedBurgers)
+
+    },
+
+    addToOrder: function (event) {
+    console.log(this.orderedBurgers[event.name] = event.amount,
+                this.orderedBurgers
+      );
     },
 
     addOrder: function (event) {

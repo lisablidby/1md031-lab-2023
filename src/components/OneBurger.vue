@@ -27,12 +27,10 @@
       </ul>
     
     <div class = "orderButtons">
-      <button v-on:click="amountRemoved"> - </button>
+      <button v-on:click="burgerRemoved"> - </button>
       <span> {{ amountOrdered }} </span>
-      <button v-on:click="amountAdded"> + </button>
+      <button v-on:click="burgerAdded"> + </button>
     </div>
-
-
     </div>
   </template>
   
@@ -57,14 +55,26 @@ export default {
 
 methods: {
 
-  amountAdded: function(){
+  burgerAdded: function(){
      this.amountOrdered ++;
+     this.$emit('orderedBurger', { name: this.burger.productName, 
+                                  amount: this.amountOrdered 
+                              }
+                );
     },
 
-  amountRemoved: function(){
+  burgerRemoved: function(){
     if(this.amountOrdered>0){
     this.amountOrdered -- ;
-  }},
+    this.$emit('orderedBurger', { name: this.burger.productName, 
+                                  amount: this.amountOrdered 
+                              }
+                );
+    }
+
+
+
+  },
 
 }
 }
