@@ -69,12 +69,19 @@
                             
                      </p>
 
-                    <h4>Please click on your location on the map </h4>
+                <h4>Please click on your location on the map </h4>
 
-                    <section id="mapShown">
-                        <div id="map" v-on:click="addOrder">
+                  <section id="mapShown">
+                    <div id="map" v-on:click="addOrder">
+
+                      <div id="dots" v-bind:style="{ background: 'url(' + require('../../public/img/polacks.jpg')+ ')' }">
+                        <div v-bind:style="{ left: this.location.x + 'px', top: this.location.y + 'px'}" v-bind:key="'dots' + key">
+                        T
                         </div>
-                      </section>
+                      </div>
+                          
+                    </div>
+                  </section>
 
                      <button type="submit" v-on:click="submitOrder">
                         <img src="https://pngimg.com/uploads/smiley/smiley_PNG36226.png" style="width: 25px">
@@ -142,7 +149,8 @@ data: function () {
       houseNumber: null,
       paymentPicked:"Swish",
       genderPicked: "female",
-      orderedBurgers: {}
+      orderedBurgers: {},
+      location: { x: 0, y: 0}
     }
   },
 
@@ -169,36 +177,23 @@ data: function () {
     addOrder: function (event) {
       var offset = {x: event.currentTarget.getBoundingClientRect().left,
                     y: event.currentTarget.getBoundingClientRect().top};
+                  
+                   
       socket.emit("addOrder", { orderId: this.getOrderNumber(),
                                 details: { x: event.clientX - 10 - offset.x,
                                            y: event.clientY - 10 - offset.y },
+
                                 orderItems: ["Beans", "Curry"]
                               }
                  );
     },
-
 },
-
 }
-
 
 </script>
 
 <style>
-  #map {
-    width: 1920px;
-    height: 1070px;
-    background: url(/Users/lisa/Documents/mynewfolder/1md031-lab-2023/public/img/polacks.jpg);
 
-  }
-  
-  #mapShown{
-    display:grid;
-    overflow: scroll;
-    width: 100%;
-    height: 350px;
-
-  }
 
   body {
     font-family: Arial, Helvetica, sans-serif;
@@ -292,5 +287,44 @@ div {
     margin-right: 10px;
 
  }
+
+ #map {
+    width: 1920px;
+    height: 1070px;
+    background: url(/Users/lisa/Documents/mynewfolder/1md031-lab-2023/public/img/polacks.jpg);
+
+  }
+  
+  #mapShown{
+    display:grid;
+    overflow: scroll;
+    width: 100%;
+    height: 350px;
+
+  }
+
+  #map {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    width:1920px;
+    height: 1078px;
+    cursor: crosshair;
+  }
+  
+  #map div {
+    position: absolute;
+    background: black;
+    color: white;
+    border-radius: 10px;
+    width:20px;
+    height:20px;
+    text-align: center;
+  }
+
+
+
+
 
 </style>
