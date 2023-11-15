@@ -67,8 +67,14 @@
                             <input type="radio"  value="non-binary" v-model="genderPicked"> Non-binary <br>
                             <input type="radio" value="undisclosed" v-model="genderPicked"> Undisclosed <br>
                             
-
                      </p>
+
+                    <h4>Please click on your location on the map </h4>
+
+                    <section id="mapShown">
+                        <div id="map" v-on:click="addOrder">
+                        </div>
+                      </section>
 
                      <button type="submit" v-on:click="submitOrder">
                         <img src="https://pngimg.com/uploads/smiley/smiley_PNG36226.png" style="width: 25px">
@@ -84,9 +90,7 @@
 
   <div>
 
-    <div id="map" v-on:click="addOrder">
-      click here
-    </div>
+
   </div>
 </template>
 
@@ -148,17 +152,20 @@ data: function () {
       return Math.floor(Math.random()*100000);
     },
 
+    // this happens in the consol when you submit your order 
     submitOrder:function (event){
      console.log(this.genderPicked, this.paymentPicked, this.nameText, this.emailText, this.streetText, this.houseNumber, this.orderedBurgers)
 
     },
 
+    //this happens when you press + or - 
     addToOrder: function (event) {
     console.log(this.orderedBurgers[event.name] = event.amount,
                 this.orderedBurgers
       );
     },
 
+    //sends the order info to the server, which then passes the info over to all connected clients 
     addOrder: function (event) {
       var offset = {x: event.currentTarget.getBoundingClientRect().left,
                     y: event.currentTarget.getBoundingClientRect().top};
@@ -179,9 +186,17 @@ data: function () {
 
 <style>
   #map {
-    width: 300px;
-    height: 300px;
-    background-color: rgba(248, 196, 249, 0.66);
+    width: 1920px;
+    height: 1070px;
+    background: url(/Users/lisa/Documents/mynewfolder/1md031-lab-2023/public/img/polacks.jpg);
+
+  }
+  
+  #mapShown{
+    display:grid;
+    overflow: scroll;
+    width: 100%;
+    height: 350px;
 
   }
 
