@@ -116,7 +116,6 @@ new MenuItem(' The Cheese Burger',"https://cdn-bk-se-ordering.azureedge.net/medi
 new MenuItem('The Chicken Burger',"https://cdn-bk-se-ordering.azureedge.net/media/tzdfpoe0/bk_kiosk_400x290_singel_crispychicken.png","Our Crispy Chicken Burger" ,"Fried Chicken, Lettuce, Tomatoes, Mild Sauce", true, false )
 ]
 
-
 export default {
   name: 'HomeView',
   components: {
@@ -131,6 +130,7 @@ export default {
     getOrderNumber: function () {
       return Math.floor(Math.random()*100000);
     },
+
     addOrder: function (event) {
       var offset = {x: event.currentTarget.getBoundingClientRect().left,
                     y: event.currentTarget.getBoundingClientRect().top};
@@ -141,6 +141,9 @@ export default {
                               }
                  );
     }
+
+
+
   }
 }
 
@@ -150,7 +153,7 @@ export default {
   #map {
     width: 300px;
     height: 300px;
-    background-color: red;
+    background-color: rgba(248, 196, 249, 0.66);
 
   }
 

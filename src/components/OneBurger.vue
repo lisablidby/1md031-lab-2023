@@ -6,7 +6,6 @@
     <div class = "burgerMenu">
 
     <ul>
-    <!--<li v-for="burger in burgerList" :key="burger.id"></li>-->
       <h2>{{ burger.productName }} </h2>
   
         <img v-bind:src="burger.picture" :alt="burger.productName">
@@ -26,6 +25,11 @@
               </section>
           </ul>
       </ul>
+      
+      <button id="minusButton"> - </button>
+      <input type="number" value = "0" id="orderAmount">
+      <button id="plusButton"> + </button>
+
     </div>
   </template>
   
