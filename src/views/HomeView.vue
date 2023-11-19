@@ -65,7 +65,7 @@
                 <h4>Please click on your location on the map </h4>
 
                   <section id="mapShown">
-                    <div id="map" v-on:click="addOrder">
+                    <div id="map" v-on:click="setLocation">
 
                       <div id="dots" v-bind:style="{ background: 'url(' + require('../../public/img/polacks.jpg')+ ')' }">
                         <div v-bind:style="{ left: this.location.x + 'px', top: this.location.y + 'px'}" v-bind:key="'dots' + key">
@@ -139,16 +139,21 @@ data: function () {
     }
   },
 
-
   methods: {
     getOrderNumber: function () {
       return Math.floor(Math.random()*100000);
     },
 
-    // this happens in the consol when you submit your order 
+    // this happens when you click on "submit your order"
     submitOrder:function (){
-     console.log(this.genderPicked, this.paymentPicked, this.nameText, this.emailText, this.orderedBurgers)
+     //console.log(this.genderPicked, this.paymentPicked, this.nameText, this.emailText, this.orderedBurgers)
+     socket.emit("addOrder", { orderId: this.getOrderNumber(),
+                                details: { x: this.location.x ,
+                                           y: this.location.y },
 
+                                orderItems: ["burger"]
+                              },
+                 );
     },
 
     //this happens when you press + or - 
@@ -156,6 +161,16 @@ data: function () {
     console.log(this.orderedBurgers[event.name] = event.amount,
                 this.orderedBurgers
       );
+    },
+
+    // saves the location the customer clicks on the map 
+    setLocation: function(event){
+      var offset = {x: event.currentTarget.getBoundingClientRect().left,
+                    y: event.currentTarget.getBoundingClientRect().top};
+
+      this.location = { x: event.clientX - 10 - offset.x,
+                        y: event.clientY - 10 - offset.y }
+
     },
 
     //sends the order info to the server, which then passes the info over to all connected clients 
@@ -167,13 +182,7 @@ data: function () {
                         y: event.clientY - 10 - offset.y }
                   
                    
-      socket.emit("addOrder", { orderId: this.getOrderNumber(),
-                                details: { x: event.clientX - 10 - offset.x,
-                                           y: event.clientY - 10 - offset.y },
 
-                                orderItems: ["Beans", "Curry"]
-                              },
-                 );
     },
 },
 }
