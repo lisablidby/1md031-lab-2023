@@ -40,13 +40,6 @@
                             <label for="email">E-mail </label><br>
                             <input type="email" id="email" v-model="emailText" placeholder="E-mail address">
                         </p>
-                        <p>
-                            <label for="street">Street </label><br>
-                            <input type="text" id="street" v-model="streetText" required="required" placeholder="Street name">
-
-                        </p>
-                            <label for="house">House </label><br>
-                            <input type="number" id="house" v-model="houseNumber" required="required" placeholder="House number">
 
                     </form>
 
@@ -102,17 +95,11 @@
 </template>
 
 <script>
-import { ref } from 'vue'
 import Burger from '../components/OneBurger.vue'
 import io from 'socket.io-client'
 import menu from '../assets/menu.json'
 
-const genderPicked = ref('Female')
-const paymentPicked = ref('Swish')
-const nameText = ref('Full Name')
-const emailText = ref('Email')
-const streetText = ref('Street')
-const houseNumber = ref('House Number')
+
 const socket = io();
 
 //console.log( burgerArray)
@@ -145,8 +132,6 @@ data: function () {
       burgers: menu,
       nameText: null,
       emailText: null,
-      streetText: null,
-      houseNumber: null,
       paymentPicked:"Swish",
       genderPicked: "female",
       orderedBurgers: {},
@@ -161,8 +146,8 @@ data: function () {
     },
 
     // this happens in the consol when you submit your order 
-    submitOrder:function (event){
-     console.log(this.genderPicked, this.paymentPicked, this.nameText, this.emailText, this.streetText, this.houseNumber, this.orderedBurgers)
+    submitOrder:function (){
+     console.log(this.genderPicked, this.paymentPicked, this.nameText, this.emailText, this.orderedBurgers)
 
     },
 
