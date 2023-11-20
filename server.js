@@ -41,7 +41,9 @@ else {
 const io = require('socket.io')(http, {cookie: false});
 
 // Store data in an object to keep the global namespace clean and 
-// prepare for multiple instances of data if necessary
+// prepare for multiple instances of data if necessary              
+
+// DET HÄR SKA VI BRY OSS OM
 function Data() {
   this.orders = {};
 }
@@ -50,7 +52,9 @@ function Data() {
   Adds an order to to the queue
 */
 Data.prototype.addOrder = function (order) {
-  //Store the order in an "associative array" with orderId as key
+  //Store the order in an "associative array" with orderId as key. 
+  
+  // sparar lite tid :) lägger in ordern i orders objektet med en nyckel = order.orderId. 
   this.orders[order.orderId] = order;
 };
 

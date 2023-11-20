@@ -1,9 +1,16 @@
 <template>
     <div id="orders">
       <div id="orderList">
+
+        <!--this part prints out the order items -->
         <div v-for="(order, key) in orders" v-bind:key="'order'+key">
-          #{{ key }}: {{ order.orderItems}}
+  
+
+          #{{ key }}: {{ order.orderItems }}
+          <span id="CustomerInfo"><br>{{order.customerInfo.customerName }}, {{ order.customerInfo.customerGender }}, {{ order.customerInfo.customerEmail }}, {{ order.customerInfo.customerPay }}</span>
         </div>
+
+
         <button v-on:click="clearQueue">Clear Queue</button>
       </div>
       <div id="dots" v-bind:style="{ background: 'url(' + require('../../public/img/polacks.jpg')+ ')' }">
@@ -63,6 +70,11 @@
     width:20px;
     height:20px;
     text-align: center;
+  }
+
+  #CustomerInfo{
+    font-style: italic;
+
   }
   </style>
   

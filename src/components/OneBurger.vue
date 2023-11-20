@@ -67,11 +67,7 @@ methods: {
                               }
                 );
     }
-
-
-
   },
-
 }
 }
 
@@ -102,8 +98,6 @@ methods: {
   /* Putting the buttons in the center of each box */
   .orderButtons{
     margin-left: 60px;
-
-
 
   }
 

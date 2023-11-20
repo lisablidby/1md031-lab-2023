@@ -102,10 +102,8 @@ import menu from '../assets/menu.json'
 
 const socket = io();
 
-//console.log( burgerArray)
-
 function MenuItem(pn, url, descTitle, desc, glut, lac) {
-    this.productName = pn; // The *this* keyword refers to the object itself
+    this.productName = pn; 
     this.picture = url;
     this.descriptionTitle = descTitle
     this.description = desc
@@ -146,12 +144,20 @@ data: function () {
 
     // this happens when you click on "submit your order"
     submitOrder:function (){
-     //console.log(this.genderPicked, this.paymentPicked, this.nameText, this.emailText, this.orderedBurgers)
      socket.emit("addOrder", { orderId: this.getOrderNumber(),
                                 details: { x: this.location.x ,
                                            y: this.location.y },
 
-                                orderItems:  this.orderedBurgers
+                                orderItems: this.orderedBurgers,
+                              
+
+                                customerInfo: {customerName: this.nameText, 
+                                              customerGender: this.genderPicked,
+                                              customerEmail: this.emailText,
+                                              customerPay: this.paymentPicked
+
+                                }
+                                            
                             
                               },
                  );
@@ -174,16 +180,6 @@ data: function () {
 
     },
 
-    //sends the order info to the server, which then passes the info over to all connected clients 
-    addOrder: function (event) {
-      var offset = {x: event.currentTarget.getBoundingClientRect().left,
-                    y: event.currentTarget.getBoundingClientRect().top};
-
-      this.location = { x: event.clientX - 10 - offset.x,
-                        y: event.clientY - 10 - offset.y }
-                  
-                   
-    },
 },
 }
 
