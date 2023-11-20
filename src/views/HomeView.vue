@@ -151,7 +151,7 @@ data: function () {
                                 details: { x: this.location.x ,
                                            y: this.location.y },
 
-                                orderItems: ["burger"]
+                                orderItems: [ this.orderedBurgers ], //amountOrdered]
                               },
                  );
     },

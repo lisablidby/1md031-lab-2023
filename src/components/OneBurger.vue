@@ -36,10 +36,6 @@
   
   <script>
 
-const minusButton = document.getElementById("minusButton")
-const plusButton = document.getElementById("plusButton")
-const orderAmount = document .getElementById("orderAmount")
-
 
 export default {
     name: 'OneBurger',
