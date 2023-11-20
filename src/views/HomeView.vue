@@ -151,7 +151,8 @@ data: function () {
                                 details: { x: this.location.x ,
                                            y: this.location.y },
 
-                                orderItems: [ this.orderedBurgers ], //amountOrdered]
+                                orderItems:  this.orderedBurgers
+                            
                               },
                  );
     },
@@ -182,7 +183,6 @@ data: function () {
                         y: event.clientY - 10 - offset.y }
                   
                    
-
     },
 },
 }
