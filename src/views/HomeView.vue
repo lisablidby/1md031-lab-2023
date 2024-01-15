@@ -284,7 +284,7 @@ div {
  #map {
     width: 1920px;
     height: 1070px;
-    background: url(/Users/lisa/Documents/mynewfolder/1md031-lab-2023/public/img/polacks.jpg);
+    background: url(/Users/lisa/Documents/Hamburgarprojektet/1md031-lab-2023/public/img/polacks.jpg);
 
   }
   
